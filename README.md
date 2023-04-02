@@ -14,4 +14,4 @@
 Base Library for some Wox base plugins, to use this, just put the folder named 'WoxPluginBase_Query
 ' which contains all files in this repository right under the wox/flowlauncher/etc. plugin dir as well as the plugins which required this.
 
-To add more wox-base-launchers, see [Query.py Line 24](https://github.com/WayneFerdon/WoxPluginBase_Query/blob/master/Query.py#L24) to [Query.py Line 33]([Query.py L24](https://github.com/WayneFerdon/WoxPluginBase_Query/blob/master/Query.py#L33))
+To add more wox-base-launchers, see [Query.py Line 24](https://github.com/WayneFerdon/WoxPluginBase_Query/blob/master/Query.py#L24) to [Query.py Line 33](https://github.com/WayneFerdon/WoxPluginBase_Query/blob/master/Query.py#L33)
