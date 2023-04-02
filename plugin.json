@@ -1,0 +1,11 @@
+{
+    "ID": "87e82bf9-af5b-4d3c-86b1-d9acc558b6b4",
+    "ActionKeyword": "*",
+    "Name": "WoxPluginBase_Query",
+    "Description": "WoxPluginBase_Query",
+    "Author": "Wayne Custaf Laqinoa Ferdon",
+    "Version": "1.0.0",
+    "Language": "python",
+    "Website": "https://github.com/wayneferdon",
+    "ExecuteFileName": "__init__.py"
+}

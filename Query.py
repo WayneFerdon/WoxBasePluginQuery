@@ -28,9 +28,11 @@ class Launchers(Enum):
 if 'wox' in current:
     from wox import Wox as LauncherBase
     LauncherType = Launchers.Wox
+    LauncherName = 'Wox'
 elif 'FlowLauncher' in current:
     from flowlauncher import FlowLauncher as LauncherBase
     LauncherType = Launchers.FlowLauncher
+    LauncherName = 'Flow.Launcher'
 
 class Launcher(LauncherBase):
     class API(Enum):
@@ -66,11 +68,11 @@ class Launcher(LauncherBase):
     def GetAPIName(api:API):
         return Launcher.Name + '.' + api.name
     
-    Name = LauncherType.name
+    Name = LauncherName
 
-    SettingPath = GetSettingPath(Name)
+    SettingPath = GetSettingPath(LauncherType.name)
     if not os.path.isfile(SettingPath):
-        SettingPath = GetSettingPath(Name, True)
+        SettingPath = GetSettingPath(LauncherType.name, True)
 
 class Query(Launcher):
 # class Query():
