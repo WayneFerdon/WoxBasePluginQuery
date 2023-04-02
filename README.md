@@ -2,8 +2,8 @@
  * @Author: WayneFerdon wayneferdon@hotmail.com
  * @Date: 2023-04-03 01:25:28
  * @LastEditors: WayneFerdon wayneferdon@hotmail.com
- * @LastEditTime: 2023-04-03 01:59:13
- * @FilePath: \WoxPluginBase_Query\README.md
+ * @LastEditTime: 2023-04-03 03:02:11
+ * @FilePath: \Flow.Launcher.Plugin.VSCodeWorkspacesc:\Users\WayneFerdon\AppData\Local\FlowLauncher\app-1.14.0\Plugins\WoxPluginBase_Query\README.md
  * ----------------------------------------------------------------
  * Copyright (c) 2023 by Wayne Ferdon Studio. All rights reserved.
  * Licensed to the .NET Foundation under one or more agreements.
@@ -11,8 +11,9 @@
  * See the LICENSE file in the project root for more information.
 -->
 
-Base Library for some Wox base plugins, to use this, just put the folder named 'WoxPluginBase_Query
-' which contains all files in this repository right under the wox/flowlauncher/etc. plugin dir as well as the plugins which required this.
+# WoxPluginBase_Query
+
+Base Library for some Wox base plugins.
 
 To add more wox-base-launchers, see [Query.py Line 23](https://github.com/WayneFerdon/WoxPluginBase_Query/blob/master/Query.py#L23) to [Query.py Line 34](https://github.com/WayneFerdon/WoxPluginBase_Query/blob/master/Query.py#L34)
 
