@@ -2,8 +2,8 @@
 # Author: WayneFerdon wayneferdon@hotmail.com
 # Date: 2023-03-04 12:45:55
 # LastEditors: WayneFerdon wayneferdon@hotmail.com
-# LastEditTime: 2023-04-03 01:02:36
-# FilePath: \FlowLauncherPluginQueryBase\Query.py
+# LastEditTime: 2023-04-03 01:51:40
+# FilePath: \WoxPluginBase_Query\Query.py
 # ----------------------------------------------------------------
 # Copyright (c) 2023 by Wayne Ferdon Studio. All rights reserved.
 # Licensed to the .NET Foundation under one or more agreements.
@@ -19,7 +19,6 @@ from enum import Enum
 import json
 
 current = os.path.dirname(os.path.realpath(__file__))
-parent = os.path.dirname(current)
 
 class Launchers(Enum):
     Wox=0,
@@ -88,6 +87,9 @@ class Query(Launcher):
         title = type + ": " + titleData
         subTitle = 'Press Enter to Copy ' + type
         return QueryResult(title, subTitle, iconPath, None, cls.copyData.__name__, True, titleData).toDict()
+    
+    def query(self, queryString:str):
+        return [QueryResult('WoxPluginBase_Query is installed.',None,None,None,None,False).toDict()]
 
 class QueryResult:
     def __init__(self, title:str, subtitle:str, icon:str, context , method:str, hideAfterAction:bool, *args) -> None:
@@ -113,3 +115,6 @@ class QueryResult:
                 "doNotHideAfterAction".replace('oNo', 'on'): (not self.hideAfterAction), 
             }
         return jsonResult
+
+if __name__ == "__main__":
+    Query()

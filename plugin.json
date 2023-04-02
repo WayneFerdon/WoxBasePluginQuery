@@ -1,11 +1,12 @@
 {
-    "ID": "87e82bf9-af5b-4d3c-86b1-d9acc558b6b4",
-    "ActionKeyword": "*",
+    "ID": "f311f420-556a-45b6-ba01-43b8438a2904",
+    "ActionKeyword": "CheckWoxPluginBase_QueryInstallation",
     "Name": "WoxPluginBase_Query",
     "Description": "WoxPluginBase_Query",
     "Author": "Wayne Custaf Laqinoa Ferdon",
     "Version": "1.0.0",
     "Language": "python",
     "Website": "https://github.com/wayneferdon",
-    "ExecuteFileName": "__init__.py"
+    "IcoPath": "./Images/Icon.png",
+    "ExecuteFileName": "Query.py"
 }

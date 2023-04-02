@@ -2,7 +2,7 @@
  * @Author: WayneFerdon wayneferdon@hotmail.com
  * @Date: 2023-04-03 01:25:28
  * @LastEditors: WayneFerdon wayneferdon@hotmail.com
- * @LastEditTime: 2023-04-03 01:39:21
+ * @LastEditTime: 2023-04-03 01:52:49
  * @FilePath: \WoxPluginBase_Query\README.md
  * ----------------------------------------------------------------
  * Copyright (c) 2023 by Wayne Ferdon Studio. All rights reserved.
@@ -14,4 +14,6 @@
 Base Library for some Wox base plugins, to use this, just put the folder named 'WoxPluginBase_Query
 ' which contains all files in this repository right under the wox/flowlauncher/etc. plugin dir as well as the plugins which required this.
 
-To add more wox-base-launchers, see [Query.py Line 24](https://github.com/WayneFerdon/WoxPluginBase_Query/blob/master/Query.py#L24) to [Query.py Line 33](https://github.com/WayneFerdon/WoxPluginBase_Query/blob/master/Query.py#L35)
+To add more wox-base-launchers, see [Query.py Line 23](https://github.com/WayneFerdon/WoxPluginBase_Query/blob/master/Query.py#L23) to [Query.py Line 34](https://github.com/WayneFerdon/WoxPluginBase_Query/blob/master/Query.py#L34)
+
+To check installation, type 'CheckWoxPluginBase_QueryInstallation' to query in Wox, FlowLauncher or etc. ,or just check in plugin settings in launcher ui.
