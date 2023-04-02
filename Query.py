@@ -88,8 +88,12 @@ class Query(Launcher):
         subTitle = 'Press Enter to Copy ' + type
         return QueryResult(title, subTitle, iconPath, None, cls.copyData.__name__, True, titleData).toDict()
     
-    def query(self, queryString:str):
-        return [QueryResult('WoxPluginBase_Query is installed.',None,None,None,None,False).toDict()]
+    class InstallationCheck(Launcher):
+        def PluginName(self) -> str:
+            return 'WoxPluginBase_Query'
+
+        def query(self, queryString:str):
+            return [QueryResult(f'{self.PluginName()} is installed.',None,None,None,None,False).toDict()]
 
 class QueryResult:
     def __init__(self, title:str, subtitle:str, icon:str, context , method:str, hideAfterAction:bool, *args) -> None:
@@ -117,4 +121,4 @@ class QueryResult:
         return jsonResult
 
 if __name__ == "__main__":
-    Query()
+    Query.InstallationCheck()
