@@ -2,7 +2,7 @@
 # Author: WayneFerdon wayneferdon@hotmail.com
 # Date: 2023-03-04 12:45:55
 # LastEditors: WayneFerdon wayneferdon@hotmail.com
-# LastEditTime: 2023-04-03 01:51:40
+# LastEditTime: 2023-04-03 07:24:51
 # FilePath: \WoxPluginBase_Query\Query.py
 # ----------------------------------------------------------------
 # Copyright (c) 2023 by Wayne Ferdon Studio. All rights reserved.
@@ -96,14 +96,14 @@ class Query(Launcher):
             return [QueryResult(f'{self.PluginName()} is installed.',None,None,None,None,False).toDict()]
 
 class QueryResult:
-    def __init__(self, title:str, subtitle:str, icon:str, context , method:str, hideAfterAction:bool, *args) -> None:
+    def __init__(self, title:str, subtitle:str, icon:str, context, method:str, hideAfterAction:bool, *args) -> None:
         self.title = title
         self.subtitle = subtitle
         self.icon = icon
-        self.method = method
-        self.parameters = args
         self.context = context
+        self.method = method
         self.hideAfterAction = hideAfterAction
+        self.parameters = args
     
     def toDict(self):
         jsonResult = {
