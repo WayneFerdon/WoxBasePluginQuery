@@ -1,6 +1,6 @@
 {
     "ID": "f311f420-556a-45b6-ba01-43b8438a2904",
-    "ActionKeyword": "CheckWoxPluginBase_QueryInstallation",
+    "ActionKeyword": "WoxPluginBase_Query_InstallationCheck",
     "Name": "WoxPluginBase_Query",
     "Description": "WoxPluginBase_Query",
     "Author": "Wayne Custaf Laqinoa Ferdon",
