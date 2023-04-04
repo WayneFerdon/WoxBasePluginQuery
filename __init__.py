@@ -13,8 +13,8 @@
 
 import os
 import sys
-current = os.path.dirname(os.path.realpath(__file__))
-sys.path.append(current)
+pluginDir = os.path.dirname(os.path.realpath(__file__))
+sys.path.append(pluginDir)
 
 from Query import *
 from RegexList import *

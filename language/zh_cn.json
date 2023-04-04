@@ -1,0 +1,17 @@
+{
+    "API.ChangeQuery": "更改查询内容",
+    "API.RestartApp": "重启 {}",
+    "API.SaveAppAllSettings": "保存设置",
+    "API.CheckForNewUpdate": "检查更新",
+    "API.ShellRun": "运行Shell命令",
+    "API.CloseApp": "关闭 {}",
+    "API.HideApp": "隐藏 {}",
+    "API.ShowApp": "显示 {}",
+    "API.ShowMsg": "显示信息",
+    "API.GetTranslation": "获取翻译",
+    "API.OpenSettingDialog": "打开设置",
+    "API.GetAllPlugins": "获取全部已加载插件",
+    "API.StartLoadingBar": "启用 {} 加载动画",
+    "API.StopLoadingBar": "停用 {} 加载动画",
+    "API.ReloadAllPluginData": "重新加载插件"
+}

@@ -1,0 +1,17 @@
+{
+    "API.ChangeQuery": "Change Current query",
+    "API.RestartApp": "Restart {}",
+    "API.SaveAppAllSettings": "Save All Settings",
+    "API.CheckForNewUpdate": "Check for Update",
+    "API.ShellRun": "Run Shell Commands",
+    "API.CloseApp": "Close {}",
+    "API.HideApp": "Hide {}",
+    "API.ShowApp": "Show {}",
+    "API.ShowMsg": "Show Messagebox",
+    "API.GetTranslation": "Get Translation of Current Language",
+    "API.OpenSettingDialog": "Open Setting Dialog",
+    "API.GetAllPlugins": "Get All Loaded Plugins",
+    "API.StartLoadingBar": "Start Loading Animation in {}",
+    "API.StopLoadingBar": "Stop Loading Animation in {}",
+    "API.ReloadAllPluginData": "Reload All Plugins"
+}

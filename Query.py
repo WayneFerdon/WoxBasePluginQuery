@@ -2,8 +2,8 @@
 # Author: WayneFerdon wayneferdon@hotmail.com
 # Date: 2023-03-04 12:45:55
 # LastEditors: WayneFerdon wayneferdon@hotmail.com
-# LastEditTime: 2023-04-03 07:24:51
-# FilePath: \WoxPluginBase_Query\Query.py
+# LastEditTime: 2023-04-04 22:38:59
+# FilePath: \Plugins\WoxPluginBase_Query\Query.py
 # ----------------------------------------------------------------
 # Copyright (c) 2023 by Wayne Ferdon Studio. All rights reserved.
 # Licensed to the .NET Foundation under one or more agreements.
@@ -18,60 +18,162 @@ import win32clipboard
 from enum import Enum
 import json
 
-current = os.path.dirname(os.path.realpath(__file__))
 
-class Launchers(Enum):
-    Wox=0,
+class LauncherEnum(Enum):
+    Wox = 0,
     FlowLauncher = 1
 
-if 'wox' in current:
-    from wox import Wox as LauncherBase
-    LauncherType = Launchers.Wox
-    LauncherName = 'Wox'
-elif 'FlowLauncher' in current:
-    from flowlauncher import FlowLauncher as LauncherBase
-    LauncherType = Launchers.FlowLauncher
-    LauncherName = 'Flow.Launcher'
+    @staticmethod
+    def GetDefinitions():
+        return {
+            LauncherEnum.Wox:{
+                'dir': 'wox',
+                'name': 'wox'
+            },
+            LauncherEnum.FlowLauncher:{
+                'dir': 'FlowLauncher',
+                'name': 'Flow.Launcher'
+            }
+        }
+
+class Language(Enum):
+    en_us = 0,
+    zh_cn = 1
+
+pluginDir = os.path.dirname(os.path.realpath(__file__))
+
+LAUNCHER_DEFINITIONS = LauncherEnum.GetDefinitions()
+
+for definition in LAUNCHER_DEFINITIONS:
+    if LAUNCHER_DEFINITIONS[definition]['dir'] not in pluginDir:
+        continue
+    LAUNCHER_TYPE = definition
+    match definition:
+        case LauncherEnum.Wox:
+            from wox import Wox as LauncherBase
+        case LauncherEnum.FlowLauncher:
+            from flowlauncher import FlowLauncher as LauncherBase
+        case _:
+            raise ValueError(f'Unknown Launcher Type{LauncherEnum(definition).name}')
 
 class Launcher(LauncherBase):
     class API(Enum):
-        ChangeQuery = 0, # change launcher query
-        RestartApp = 1, # restart Launcher
-        SaveAppAllSettings = 2, #save all Launcher settings
-        CheckForNewUpdate = 3, # check for new Launcher update
-        ShellRun = 4, # run shell commands
-        CloseApp = 5, # close launcher
-        HideApp = 6, # hide launcher
-        ShowApp = 7, # show launcher
-        ShowMsg = 8, # show messagebox
-        GetTranslation = 9, # get translation of current language
-        OpenSettingDialog = 10, # open setting dialog
-        GetAllPlugins = 11, # get all loaded plugins
-        StartLoadingBar = 12, # start loading animation in launcher
-        StopLoadingBar = 13, # stop loading animation in launcher
-        ReloadAllPluginData = 14, # reload all launcher plugins
+        ChangeQuery = 0, # Change Launcher query
+        RestartApp = 1, # Restart Launcher
+        SaveAppAllSettings = 2, # Save all Launcher settings
+        CheckForNewUpdate = 3, # Check for new Launcher update
+        ShellRun = 4, # Run shell commands
+        CloseApp = 5, # Close Launcher
+        HideApp = 6, # Hide Launcher
+        ShowApp = 7, # Show Launcher
+        ShowMsg = 8, # Show messagebox
+        GetTranslation = 9, # Get translation of current language
+        OpenSettingDialog = 10, # Open setting dialog
+        GetAllPlugins = 11, # Get all loaded plugins
+        StartLoadingBar = 12, # Start loading animation in Launcher
+        StopLoadingBar = 13, # Stop loading animation in Launcher
+        ReloadAllPluginData = 14, # Reload all Launcher plugins
+
+    @staticmethod
+    def LoadLanguageJson(language:Language) -> dict[str, str]:
+        languageData = None
+        try:
+            jsonFIle = os.path.join(os.path.abspath(os.path.dirname(os.path.realpath(__file__))) , f'language\\{language.name}.json') 
+            with open(jsonFIle, 'r', encoding='utf-8`') as f:
+                try:    
+                    languageData = json.load(f)
+                except Exception:
+                    pass
+        except Exception:
+            if language != Language.en_us:
+                languageData = Launcher.LoadLanguageJson(Language.en_us)
+        return languageData
+
+    @staticmethod
+    def GetSettings():
+        if not Launcher.__settings__:
+            with(open(Launcher.GetSettingPath(),'r') as f):
+                Launcher.__settings__ = json.load(f)
+        return Launcher.__settings__
 
     @staticmethod
     def GetActionKeyword(plugInID:int):
-        with(
-        open(Query.SettingPath,'r') as settingJson
-        ):
-            return json.load(settingJson)['PluginSettings']['Plugins'][plugInID]['ActionKeywords'][0]
+        return Launcher.GetSettings()['PluginSettings']['Plugins'][plugInID]['ActionKeywords'][0]
 
     @staticmethod
-    def GetSettingPath(PathName:str, isPortableMode:bool = False):
-        mode = 'Roaming' if isPortableMode else 'Local'
-        return os.environ['localAppData'.upper()] + '/../' + mode +'/' + PathName + '/Settings/Settings.json'
+    def GetSettingPath():
+        dirName = Launcher.GetName()
+        appdata = os.path.join(os.environ['localAppData'.upper()],'../')
+        
+        roaming = os.path.join(appdata, f'./Roaming/{dirName}/')
+        local = os.path.join(appdata, f'./Loacl/{dirName}/UserData/')
+        portable = f'../../../'
+        portableLocal = f'../../UserData/'
+
+        relative = './Settings/Settings.json'
+        modes = [roaming, local, portable, portableLocal]
+        for mode in modes:
+            path = os.path.join(mode, relative)
+            if os.path.isfile(path):
+                return path
+        return os.path.join(os.path.realpath(__file__), '../../../Settings/Settings.json')
 
     @staticmethod
-    def GetAPIName(api:API):
-        return Launcher.Name + '.' + api.name
+    def GetAPI(api:API):
+        return f'{Launcher.__launcherName__}.{api.name}'
     
-    Name = LauncherName
+    @staticmethod
+    def GetAPIName(api:API, language:Language=Language.en_us):
+        return Launcher.GetAPIs()[api][language]
+    
+    @staticmethod
+    def GetName():
+        if not Launcher.__launcherName__:
+            Launcher.__launcherName__ = LAUNCHER_DEFINITIONS[LAUNCHER_TYPE]['name']
+        return Launcher.__launcherName__
 
-    SettingPath = GetSettingPath(LauncherType.name)
-    if not os.path.isfile(SettingPath):
-        SettingPath = GetSettingPath(LauncherType.name, True)
+    __launcherName__ = None
+    __settingPath__ = None 
+    __settings__ = None
+    __apis__ = None
+    __language = None
+
+    @staticmethod
+    def GetLanguage():
+        if not Launcher.__language:
+            langName = str(Launcher.GetSettings()['Language']).replace('-', '_')
+            Launcher.__language = Language[langName]
+        return Launcher.__language
+
+    @staticmethod
+    def GetLanguageJson(language:Language):
+        languageJSON = Launcher.LoadLanguageJson(language)
+        if languageJSON:
+            return languageJSON
+        if language is not Language.en_us:
+            languageJSON = Launcher.LoadLanguageJson(Language.en_us)
+        currentLanguage = Launcher.GetLanguage()
+        if language is not currentLanguage:
+            languageJSON = Launcher.LoadLanguageJson(currentLanguage)
+        if languageJSON:
+            return languageJSON
+        languageJSON = dict[str, str]()
+        for api in Launcher.API:
+            languageJSON[str(api)] = f'Launcher.{api}'
+        return languageJSON
+
+    @staticmethod
+    def GetAPIs():
+        if not Launcher.__apis__:
+            Launcher.__apis__ = dict[Launcher.API, dict[Language, str]]()
+            for api in Launcher.API:
+                Launcher.__apis__[api] = dict[Language, str]()
+            for language in Language:
+                languageJSON = Launcher.GetLanguageJson(language)
+                for api in Launcher.API:
+                    Launcher.__apis__[api][language] = languageJSON[str(api)].format(Launcher.GetName())
+        return Launcher.__apis__
+
 
 class Query(Launcher):
 # class Query():
