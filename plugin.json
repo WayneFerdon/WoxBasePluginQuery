@@ -7,6 +7,6 @@
     "Version": "1.0.0",
     "Language": "python",
     "Website": "https://github.com/wayneferdon/WoxPluginBase_Query",
-    "IcoPath": "Images\\Icon_FlowLauncher.png",
+    "IcoPath": "Images\\Icon_Flow.Launcher.png",
     "ExecuteFileName": "QueryPlugin.py"
 }
