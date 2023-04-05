@@ -2,8 +2,8 @@
 # Author: WayneFerdon wayneferdon@hotmail.com
 # Date: 2023-04-02 12:21:06
 # LastEditors: WayneFerdon wayneferdon@hotmail.com
-# LastEditTime: 2023-04-05 04:52:03
-# FilePath: \Plugins\WoxPluginBase_Query\QueryDebug.py
+# LastEditTime: 2023-04-05 23:44:20
+# FilePath: \FlowLauncher\Plugins\WoxPluginBase_Query\QueryDebug.py
 # ----------------------------------------------------------------
 # Copyright (c) 2023 by Wayne Ferdon Studio. All rights reserved.
 # Licensed to the .NET Foundation under one or more agreements.
@@ -19,7 +19,7 @@ class QueryDebug:
     __flag__=False
     
     @classmethod
-    def __new__(cls):
+    def __new__(cls, *args, **kwargs):
         if cls.Instance is None:
             cls.Instance=super().__new__(cls)
         return cls.Instance
