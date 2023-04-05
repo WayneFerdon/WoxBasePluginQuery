@@ -2,8 +2,8 @@
 # Author: WayneFerdon wayneferdon@hotmail.com
 # Date: 2023-04-02 12:21:06
 # LastEditors: WayneFerdon wayneferdon@hotmail.com
-# LastEditTime: 2023-04-03 01:40:58
-# FilePath: \WoxPluginBase_Query\__init__.py
+# LastEditTime: 2023-04-05 06:50:52
+# FilePath: \Plugins\WoxPluginBase_Query\__init__.py
 # ----------------------------------------------------------------
 # Copyright (c) 2023 by Wayne Ferdon Studio. All rights reserved.
 # Licensed to the .NET Foundation under one or more agreements.
@@ -16,6 +16,6 @@ import sys
 pluginDir = os.path.dirname(os.path.realpath(__file__))
 sys.path.append(pluginDir)
 
-from Query import *
 from RegexList import *
+from QueryPlugin import *
 from QueryDebug import *

@@ -6,7 +6,7 @@
     "Author": "Wayne Custaf Laqinoa Ferdon",
     "Version": "1.0.0",
     "Language": "python",
-    "Website": "https://github.com/wayneferdon",
-    "IcoPath": "./Images/Icon.png",
-    "ExecuteFileName": "Query.py"
+    "Website": "https://github.com/wayneferdon/WoxPluginBase_Query",
+    "IcoPath": "Images\\Icon_FlowLauncher.png",
+    "ExecuteFileName": "QueryPlugin.py"
 }

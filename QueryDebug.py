@@ -2,8 +2,8 @@
 # Author: WayneFerdon wayneferdon@hotmail.com
 # Date: 2023-04-02 12:21:06
 # LastEditors: WayneFerdon wayneferdon@hotmail.com
-# LastEditTime: 2023-04-03 00:50:25
-# FilePath: \FlowLauncherPluginQueryBase\QueryDebug.py
+# LastEditTime: 2023-04-05 04:52:03
+# FilePath: \Plugins\WoxPluginBase_Query\QueryDebug.py
 # ----------------------------------------------------------------
 # Copyright (c) 2023 by Wayne Ferdon Studio. All rights reserved.
 # Licensed to the .NET Foundation under one or more agreements.
@@ -16,18 +16,22 @@ import traceback
 class QueryDebug:
     # 静态变量
     Instance=None
-    _flag=False
-    def __new__(cls, *args, **kwargs):
+    __flag__=False
+    
+    @classmethod
+    def __new__(cls):
         if cls.Instance is None:
             cls.Instance=super().__new__(cls)
         return cls.Instance
-    def __init__(self):
-        if QueryDebug._flag:
+    
+    @classmethod
+    def __init__(cls):
+        if cls.__flag__:
             return
-        QueryDebug._flag=True
+        cls.__flag__=True
 
     Logs = list[str]()
     
-    @staticmethod
-    def Log(*info):
-        QueryDebug.Instance.Logs.append([len(QueryDebug.Instance.Logs), str(list(info))[1:-1] + "\n" + "\n".join(traceback.format_stack())])
+    @classmethod
+    def Log(cls, *info):
+        cls.Instance.Logs.append([len(cls.Instance.Logs), str(list(info))[1:-1] + "\n" + "\n".join(traceback.format_stack())])
