@@ -2,8 +2,8 @@
 # Author: WayneFerdon wayneferdon@hotmail.com
 # Date: 2023-03-04 12:45:55
 # LastEditors: WayneFerdon wayneferdon@hotmail.com
-# LastEditTime: 2023-04-05 05:22:41
-# FilePath: \Plugins\WoxPluginBase_Query\Query.py
+# LastEditTime: 2023-04-09 11:22:33
+# FilePath: \FlowLauncher\Plugins\WoxPluginBase_Query\QueryPlugin.py
 # ----------------------------------------------------------------
 # Copyright (c) 2023 by Wayne Ferdon Studio. All rights reserved.
 # Licensed to the .NET Foundation under one or more agreements.
@@ -25,6 +25,9 @@ class Plugin(PluginBase):
     defaultIcon = pluginJson['IcoPath']
     actionKeyword = Launcher.settings['PluginSettings']['Plugins'][id]['ActionKeywords'][0]
 
+    def close_launcher(self):
+        Launcher.close_launcher()
+
     @staticmethod
     def setPlatformAsPluginIcon():
         launcherIcon = Launcher.icon
@@ -35,8 +38,19 @@ class Plugin(PluginBase):
         with open('./plugin.json','w') as f:
             f.write(json.dumps(Plugin.pluginJson))
 
+    def __init__(self):
+        super().__init__()
+    
+    def context_menu(self, data) -> list:
+        return super().context_menu(data)
+
+    def debug(self, msg: str):
+        return super().debug(msg)
+
+    def query(self, param: str = '') -> list:
+        return super().query(param)
+
 class QueryPlugin(Plugin):
-# class QueryPlugin():
     def copyData(self, data):
         win32clipboard.OpenClipboard()
         win32clipboard.EmptyClipboard()
@@ -48,11 +62,22 @@ class QueryPlugin(Plugin):
         subTitle = 'Press Enter to Copy ' + type
         return QueryResult(title, subTitle, iconPath, None, self.copyData.__name__, True, titleData).toDict()
     
+    def context_menu(self, data) -> list:
+        return super().context_menu(data)
+
+    def debug(self, msg: str):
+        return super().debug(msg)
+
+    def query(self, param: str = '') -> list:
+        return super().query(param)
+    
 class InstallationCheck(Plugin):
     def query(self, _:str):
         if 'WoxPluginBase_Query' == Plugin.plugName:
             Plugin.setPlatformAsPluginIcon()
-        return [QueryResult(f'{Plugin.plugName} is installed.',None,Plugin.defaultIcon,None,None,False).toDict()]
+        msg = f'{Plugin.plugName} is installed.'
+        self.debug(msg=msg)
+        return [QueryResult(msg,None,Plugin.defaultIcon,None,None,False).toDict()]
 
 class QueryResult:
     def __init__(self, title:str, subtitle:str, icon:str, context, method:str, hideAfterAction:bool, *args) -> None:

@@ -2,8 +2,8 @@
 # Author: WayneFerdon wayneferdon@hotmail.com
 # Date: 2023-04-05 02:56:19
 # LastEditors: WayneFerdon wayneferdon@hotmail.com
-# LastEditTime: 2023-04-05 08:06:02
-# FilePath: \Plugins\WoxPluginBase_Query\Launcher.py
+# LastEditTime: 2023-04-09 11:09:31
+# FilePath: \FlowLauncher\Plugins\WoxPluginBase_Query\Launcher.py
 # ----------------------------------------------------------------
 # Copyright (c) 2023 by Wayne Ferdon Studio. All rights reserved.
 # Licensed to the .NET Foundation under one or more agreements.
@@ -69,49 +69,6 @@ class Launcher():
         def dir(self):
             return Launcher.Distribution.all[self][Launcher.Distribution.dir]
 
-    class API(Enum):
-        ChangeQuery = 100 # Change Launcher query
-        RestartApp = 101 # Restart Launcher
-        SaveAppAllSettings = 102 # Save all Launcher settings
-        CheckForNewUpdate = 103 # Check for new Launcher update
-        ShellRun = 104 # Run shell commands
-        CloseApp = 105 # Close Launcher
-        HideApp = 106 # Hide Launcher
-        ShowApp = 107 # Show Launcher
-        ShowMsg = 108 # Show messagebox
-        GetTranslation = 109 # get translation of current language
-        OpenSettingDialog = 110 # Open setting dialog
-        GetAllPlugins = 111 # get all loaded plugins
-        StartLoadingBar = 112 # Start loading animation in Launcher
-        StopLoadingBar = 113 # Stop loading animation in Launcher
-        ReloadAllPluginData = 114 # Reload all Launcher plugins
-    
-        __apiDict__ = None
-
-        @property
-        def name(self) -> str:
-            return f'{Launcher.name}.{super().name}'
-        
-        @classmethod
-        @property
-        def all(cls):
-            if cls.__apiDict__:
-                return cls.__apiDict__
-            cls.__apiDict__ = dict[Launcher.API, dict[Language, str]]()
-            for api in Launcher.API:
-                cls.__apiDict__[api] = dict[Language, str]()
-            for language in Language:
-                languageJSON = Launcher.geti18n(language)
-                for api in Launcher.API:
-                    key = str(api)
-                    if key not in languageJSON.keys():
-                        languageJSON[key] = f'Launcher.{api}'
-                    cls.__apiDict__[api][language] = languageJSON[key].format(Launcher.name)
-            return cls.__apiDict__
-    
-        def getDescription(self, language:Language=Language.en_us) -> str:
-            return Launcher.API.all[self][language]
-        
     @classmethod
     @property
     def distribution(cls) -> Distribution:
@@ -166,6 +123,13 @@ class Launcher():
         langName = str(cls.settings['Language']).replace('-', '_')
         cls.__language__ = Language[langName]
         return cls.__language__
+
+    @staticmethod
+    def close_launcher():
+        try:
+            os.popen(f'taskkill /f /im {Launcher.name}.exe')
+        except Exception:
+            pass
     
     @staticmethod
     def geti18n(language:Language) -> dict[str, str]:
@@ -176,7 +140,7 @@ class Launcher():
         for json in jsons:
             i18n.update(json)
         return i18n
-    
+
 match Launcher.distribution:
     case Launcher.Distribution.Wox:
         from wox import Wox as PluginBase
