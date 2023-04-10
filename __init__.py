@@ -2,7 +2,7 @@
 # Author: WayneFerdon wayneferdon@hotmail.com
 # Date: 2023-04-02 12:21:06
 # LastEditors: WayneFerdon wayneferdon@hotmail.com
-# LastEditTime: 2023-04-09 11:40:16
+# LastEditTime: 2023-04-09 23:19:30
 # FilePath: \FlowLauncher\Plugins\WoxPluginBase_Query\__init__.py
 # ----------------------------------------------------------------
 # Copyright (c) 2023 by Wayne Ferdon Studio. All rights reserved.
@@ -19,3 +19,4 @@ sys.path.append(pluginDir)
 from RegexList import *
 from LauncherAPI import *
 from QueryPlugin import *
+from QueryDebug import *

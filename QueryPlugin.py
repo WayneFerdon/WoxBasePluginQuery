@@ -2,7 +2,7 @@
 # Author: WayneFerdon wayneferdon@hotmail.com
 # Date: 2023-03-04 12:45:55
 # LastEditors: WayneFerdon wayneferdon@hotmail.com
-# LastEditTime: 2023-04-09 11:22:33
+# LastEditTime: 2023-04-11 05:26:28
 # FilePath: \FlowLauncher\Plugins\WoxPluginBase_Query\QueryPlugin.py
 # ----------------------------------------------------------------
 # Copyright (c) 2023 by Wayne Ferdon Studio. All rights reserved.
@@ -61,6 +61,12 @@ class QueryPlugin(Plugin):
         title = type + ": " + titleData
         subTitle = 'Press Enter to Copy ' + type
         return QueryResult(title, subTitle, iconPath, None, self.copyData.__name__, True, titleData).toDict()
+    
+    def getTitleOnlyResult(self, title:str):
+        return QueryResult(title,None,self.defaultIcon,None,None,False).toDict()
+
+    def getExceptionResult(self, traceback:str) -> dict:
+        return self.getTitleOnlyResult(traceback)
     
     def context_menu(self, data) -> list:
         return super().context_menu(data)
