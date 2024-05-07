@@ -3,7 +3,7 @@
 # Date: 2023-04-05 02:56:19
 # LastEditors: WayneFerdon wayneferdon@hotmail.com
 # LastEditTime: 2023-04-09 11:09:31
-# FilePath: \FlowLauncher\Plugins\WoxPluginBase_Query\Launcher.py
+# FilePath: \FlowLauncher\Plugins\WoxBasePluginQuery\Launcher.py
 # ----------------------------------------------------------------
 # Copyright (c) 2023 by Wayne Ferdon Studio. All rights reserved.
 # Licensed to the .NET Foundation under one or more agreements.
@@ -96,11 +96,11 @@ class Launcher():
         if cls.__settings__:
             return cls.__settings__
         
-        # 1. portable/non-portable mode, and WoxPluginBase_Query is in the build-in plugin folder
+        # 1. portable/non-portable mode, and WoxBasePluginQuery is in the build-in plugin folder
         buildin = f'../UserData/'
-        # 2. non-portable mode, and WoxPluginBase_Query is in %appdata%{dirName}
+        # 2. non-portable mode, and WoxBasePluginQuery is in %appdata%{dirName}
         roaming = os.path.join(os.getenv('appData'), f'./{cls.name}/')
-        # 3. portable mode, and WoxPluginBase_Query is in the user plugin folder
+        # 3. portable mode, and WoxBasePluginQuery is in the user plugin folder
         portable = f'../../'
 
         modes = [roaming, buildin, portable]

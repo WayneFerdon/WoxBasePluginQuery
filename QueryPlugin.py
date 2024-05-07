@@ -3,7 +3,7 @@
 # Date: 2023-03-04 12:45:55
 # LastEditors: WayneFerdon wayneferdon@hotmail.com
 # LastEditTime: 2023-04-11 05:26:28
-# FilePath: \FlowLauncher\Plugins\WoxPluginBase_Query\QueryPlugin.py
+# FilePath: \FlowLauncher\Plugins\WoxBasePluginQuery\QueryPlugin.py
 # ----------------------------------------------------------------
 # Copyright (c) 2023 by Wayne Ferdon Studio. All rights reserved.
 # Licensed to the .NET Foundation under one or more agreements.
@@ -79,7 +79,7 @@ class QueryPlugin(Plugin):
     
 class InstallationCheck(Plugin):
     def query(self, _:str):
-        if 'WoxPluginBase_Query' == Plugin.plugName:
+        if 'WoxBasePluginQuery' == Plugin.plugName:
             Plugin.setPlatformAsPluginIcon()
         msg = f'{Plugin.plugName} is installed.'
         self.debug(msg=msg)

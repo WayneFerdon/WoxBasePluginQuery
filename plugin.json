@@ -1,12 +1,12 @@
 {
     "ID": "f311f420-556a-45b6-ba01-43b8438a2904",
-    "ActionKeyword": "WoxPluginBase_Query_InstallationCheck",
-    "Name": "WoxPluginBase_Query",
-    "Description": "WoxPluginBase_Query",
+    "ActionKeyword": "WoxBasePluginQuery_InstallationCheck",
+    "Name": "WoxBasePluginQuery",
+    "Description": "WoxBasePluginQuery",
     "Author": "Wayne Custaf Laqinoa Ferdon",
     "Version": "1.0.0",
     "Language": "python",
-    "Website": "https://github.com/wayneferdon/WoxPluginBase_Query",
+    "Website": "https://github.com/wayneferdon/WoxBasePluginQuery",
     "IcoPath": "Images\\Icon_Flow.Launcher.png",
     "ExecuteFileName": "QueryPlugin.py"
 }

@@ -3,7 +3,7 @@
 # Date: 2023-04-09 11:15:27
 # LastEditors: WayneFerdon wayneferdon@hotmail.com
 # LastEditTime: 2023-04-09 11:16:40
-# FilePath: \FlowLauncher\Plugins\WoxPluginBase_Query\LauncherAPI.py
+# FilePath: \FlowLauncher\Plugins\WoxBasePluginQuery\LauncherAPI.py
 # ----------------------------------------------------------------
 # Copyright (c) 2023 by Wayne Ferdon Studio. All rights reserved.
 # Licensed to the .NET Foundation under one or more agreements.

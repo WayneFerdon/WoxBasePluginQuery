@@ -3,7 +3,7 @@
 # Date: 2023-04-02 12:21:06
 # LastEditors: WayneFerdon wayneferdon@hotmail.com
 # LastEditTime: 2023-04-13 04:20:15
-# FilePath: \FlowLauncher\Plugins\WoxPluginBase_Query\QueryDebug.py
+# FilePath: \FlowLauncher\Plugins\WoxBasePluginQuery\QueryDebug.py
 # ----------------------------------------------------------------
 # Copyright (c) 2023 by Wayne Ferdon Studio. All rights reserved.
 # Licensed to the .NET Foundation under one or more agreements.
