@@ -21,10 +21,13 @@ class RegexList:
         self.__regexs__ = [ re.compile(x) for x in queryList ]
 
     def __replaceBrackets__(string:str):
-        return string.replace('[', '\[') \
-            .replace(']', '\]') \
-            .replace('(', '\(') \
-            .replace(')', '\)')
+        try:
+            return string.replace('[', '\\[') \
+                .replace(']', '\\]') \
+                .replace('(', '\\(') \
+                .replace(')', '\\)')
+        except Exception as e:
+            return string
 
     def match(self, item: str):
         for regex in self.__regexs__:
