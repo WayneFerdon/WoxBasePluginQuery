@@ -22,10 +22,10 @@ class RegexList:
 
     def __replaceBrackets__(string:str):
         try:
-            return string.replace('[', '\\[') \
-                .replace(']', '\\]') \
-                .replace('(', '\\(') \
-                .replace(')', '\\)')
+            return string.replace('[', '\[') \
+                .replace(']', '\]') \
+                .replace('(', '\(') \
+                .replace(')', '\)')
         except Exception as e:
             return string
 
